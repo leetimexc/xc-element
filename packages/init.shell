@@ -3,4 +3,4 @@ for i in components core docs hooks theme utils; do
  pnpm init 
  cd ..
 
- done
+done

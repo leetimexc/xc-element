@@ -1,10 +1,14 @@
 {
-  "name": "@ns-element/core",
+  "name": "ns-element",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "type": "module",
+  "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@ns-element/components": "workspace:*"
   },
   "keywords": [],
   "author": "",

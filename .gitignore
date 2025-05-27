@@ -14,7 +14,7 @@ dist-ssr
 *.local
 
 /cyperss/videos/
-/cypress srceenshots/
+/cypress/srceenshots/
 
 .vitepress/dist
 .vitepress/cache
@@ -26,5 +26,6 @@ dist-ssr
 .DS_Store
 *.suo
 *.ntvs*
+*.njsproj
 *.sln
 *.sw?
