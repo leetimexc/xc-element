@@ -7,7 +7,7 @@
     "dev": "pnpm --filter @ns-element/play dev",
     "docs:dev": "pnpm --filter @ns-element/docs dev",
     "docs:build": "pnpm --filter @ns-element/docs build",
-    "test": "echo 'todo'"
+    "test": "pnpm --filter @ns-element/components test"
   },
   "keywords": [],
   "author": "",

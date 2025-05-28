@@ -1,0 +1,199 @@
+.ns-button-group {
+  --ns-button-group-border-color: var(--er-border-color-lighter);
+}
+.ns-button {
+  --ns-button-font-weight: var(--er-font-weight-primary);
+  --ns-button-border-color: var(--er-border-color);
+  --ns-button-bg-color: var(--er-fill-color-blank);
+  --ns-button-text-color: var(--er-text-color-regular);
+  --ns-button-disabled-text-color: var(--er-disabled-text-color);
+  --ns-button-disabled-bg-color: var(--er-fill-color-blank);
+  --ns-button-disabled-border-color: var(--er-border-color-light);
+  --ns-button-hover-text-color: var(--er-color-primary);
+  --ns-button-hover-bg-color: var(--er-color-primary-light-9);
+  --ns-button-hover-border-color: var(--er-color-primary-light-7);
+  --ns-button-active-text-color: var(--ns-button-hover-text-color);
+  --ns-button-active-border-color: var(--er-color-primary);
+  --ns-button-active-bg-color: var(--ns-button-hover-bg-color);
+  --ns-button-outline-color: var(--er-color-primary-light-5);
+  --ns-button-active-color: var(--er-text-color-primary);
+}
+
+.ns-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 1;
+  height: 32px;
+  white-space: nowrap;
+  cursor: pointer;
+  color: var(--ns-button-text-color);
+  text-align: center;
+  box-sizing: border-box;
+  outline: none;
+  transition: 0.1s;
+  font-weight: var(--ns-button-font-weight);
+  user-select: none;
+  vertical-align: middle;
+  -webkit-appearance: none;
+  background-color: var(--ns-button-bg-color);
+  border: var(--er-border);
+  border-color: var(--ns-button-border-color);
+  padding: 8px 15px;
+  font-size: var(--er-font-size-base);
+  border-radius: var(--er-border-radius-base);
+  & + & {
+    margin-left: 12px;
+  }
+  &:hover,
+  &:focus {
+    color: var(--ns-button-hover-text-color);
+    border-color: var(--ns-button-hover-border-color);
+    background-color: var(--ns-button-hover-bg-color);
+    outline: none;
+  }
+  &:active {
+    color: var(--ns-button-active-text-color);
+    border-color: var(--ns-button-active-border-color);
+    background-color: var(--ns-button-active-bg-color);
+    outline: none;
+  }
+  /*plain*/
+  &.is-plain {
+    --ns-button-hover-text-color: var(--er-color-primary);
+    --ns-button-hover-bg-color: var(--er-fill-color-blank);
+    --ns-button-hover-border-color: var(--er-color-primary);
+  }
+  /*round*/
+  &.is-round {
+    border-radius: var(--er-border-radius-round);
+  }
+  /*circle*/
+  &.is-circle {
+    border-radius: 50%;
+    padding: 8px;
+  }
+  /*disabled*/
+  &.is-loading,
+  &.is-disabled,
+  &.is-disabled:hover,
+  &.is-disabled:focus,
+  &[disabled],
+  &[disabled]:hover,
+  &[disabled]:focus {
+    color: var(--ns-button-disabled-text-color);
+    cursor: not-allowed;
+    background-image: none;
+    background-color: var(--ns-button-disabled-bg-color);
+    border-color: var(--ns-button-disabled-border-color);
+  }
+  [class*='er-icon'] {
+    width: 1em;
+    height: 1em;
+  }
+}
+@each $val in primary, success, warning, info, danger {
+  .ns-button--$(val) {
+    --ns-button-text-color: var(--er-color-white);
+    --ns-button-bg-color: var(--er-color-$(val));
+    --ns-button-border-color: var(--er-color-$(val));
+    --ns-button-outline-color: var(--er-color-$(val)-light-5);
+    --ns-button-active-color: var(--er-color-$(val)-dark-2);
+    --ns-button-hover-text-color: var(--er-color-white);
+    --ns-button-hover-bg-color: var(--er-color-$(val)-light-3);
+    --ns-button-hover-border-color: var(--er-color-$(val)-light-3);
+    --ns-button-active-bg-color: var(--er-color-$(val)-dark-2);
+    --ns-button-active-border-color: var(--er-color-$(val)-dark-2);
+    --ns-button-disabled-text-color: var(--er-color-white);
+    --ns-button-disabled-bg-color: var(--er-color-$(val)-light-5);
+    --ns-button-disabled-border-color: var(--er-color-$(val)-light-5);
+  }
+  .ns-button--$(val).is-plain {
+    --ns-button-text-color: var(--er-color-$(val));
+    --ns-button-bg-color: var(--er-color-$(val)-light-9);
+    --ns-button-border-color: var(--er-color-$(val)-light-5);
+    --ns-button-hover-text-color: var(--er-color-white);
+    --ns-button-hover-bg-color: var(--er-color-$(val));
+    --ns-button-hover-border-color: var(--er-color-$(val));
+    --ns-button-active-text-color: var(--er-color-white);
+
+    --ns-button-disabled-text-color: var(--er-color-$(val)-light-5);
+    --ns-button-disabled-bg-color: var(--er-color-$(val)-light-9);
+    --ns-button-disabled-border-color: var(--er-color-$(val)-light-8);
+  }
+}
+.ns-button--large {
+  --ns-button-size: 40px;
+  height: var(--ns-button-size);
+  padding: 12px 19px;
+  font-size: var(--er-font-size-base);
+  border-radius: var(--er-border-radius-base);
+  /*circle*/
+  &.is-circle {
+    border-radius: 50%;
+    padding: 12px;
+  }
+}
+.ns-button--small {
+  --ns-button-size: 24px;
+  height: var(--ns-button-size);
+  padding: 5px 11px;
+  font-size: 12px;
+  border-radius: calc(var(--er-border-radius-base) - 1px);
+  /*circle*/
+  &.is-circle {
+    border-radius: 50%;
+    padding: 5px;
+  }
+  [class*='er-icon'] {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+.ns-button-group {
+  display: inline-block;
+  vertical-align: middle;
+
+  &::after {
+    clear: both;
+  }
+  & > :deep(.ns-button){
+    float: left;
+    position: relative;
+    margin-left: 0;
+    &:first-child{
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+      border-right-color: var(--ns-button-group-border-color);
+    }
+    &:last-child{
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0; 
+      border-left-color: var(--ns-button-group-border-color);
+    }
+    &:not(:first-child):not(:last-child) {
+      border-radius: 0;
+
+      border-left-color: var(--ns-button-group-border-color);
+      border-right-color: var(--ns-button-group-border-color);
+    }
+    &:not(:last-child) {
+      margin-right: -1px;
+    }
+    &:first-child:last-child {
+      border-top-right-radius: var(--er-border-radius-base);
+      border-bottom-right-radius: var(--er-border-radius-base);
+      border-top-left-radius: var(--er-border-radius-base);
+      border-bottom-left-radius: var(--er-border-radius-base);
+
+      &.is-round {
+        border-radius: var(--er-border-radius-round);
+      }
+
+      &.is-circle {
+        border-radius: 50%;
+      }
+    }
+  }
+}
