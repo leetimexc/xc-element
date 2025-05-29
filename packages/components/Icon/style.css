@@ -1,0 +1,16 @@
+.ns-icon {
+  --ns-icon-color: inherit;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  fill: currentColor;
+  color: var(--ns-icon-color);
+  font-size: inherit;
+}
+
+@each $val in primary, info, success, warning, danger {
+  .ns-icon--$(val) {
+    --ns-icon-color: var(--ns-color-$(val));
+  }
+}

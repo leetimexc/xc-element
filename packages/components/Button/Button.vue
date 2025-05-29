@@ -1,26 +1,30 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
-import type { ButtonProps } from './types'
-
+import type { ButtonProps, ButtonEmits, ButtonInstance } from './types'
+import { throttle } from 'lodash-es'
+import { NsIcon } from '../Icon/Icon.vue'
 defineOptions({
   name: 'NsButton',
 })
 const props = withDefaults(defineProps<ButtonProps>(), {
-  type: 'primary',
-  nativeType: 'button',
-  size: 'default',
-  plain: false,
-  round: false,
-  circle: false,
-  disabled: false,
-  loading: false,
-  icon: '',
   tag: 'button',
+  nativeType: 'button',
+  useThrottle: true,
+  throttleDuration: 500,
 })
+
+const emits = defineEmits<ButtonEmits>()
 
 const slots = defineSlots()
 
 const _ref = ref<HTMLButtonElement>()
+
+const handleBtnClick = (e: MouseEvent) => emits('click', e)
+const handleBtnClickThrottle = throttle(handleBtnClick, props.throttleDuration)
+
+defineExpose<ButtonInstance>({
+  ref: _ref,
+})
 </script>
 <template>
   <component
@@ -38,6 +42,7 @@ const _ref = ref<HTMLButtonElement>()
       'is-disabled': disabled,
       'is-loading': loading,
     }"
+    @click="(e: MouseEvent) => useThrottle ? handleBtnClickThrottle(e) : handleBtnClick(e)"
   >
     <slot></slot>
   </component>
