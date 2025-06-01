@@ -1,4 +1,4 @@
-import { NsButton, NsIcon } from '@ns-element/components'
+import { NsButton, NsButtonGroup, NsIcon } from '@ns-element/components'
 import type { Plugin } from 'vue'
 
-export default [NsButton, NsIcon] as Plugin[]
+export default [NsButton, NsButtonGroup, NsIcon] as Plugin[]
