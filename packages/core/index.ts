@@ -8,5 +8,5 @@ library.add(fas)
 
 const installer = makeInstaller(components)
 
-export * from '@ns-element/components'
+export * from './components'
 export default installer
