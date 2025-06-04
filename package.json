@@ -1,15 +1,15 @@
 {
-  "name": "@ns-element/workspace",
+  "name": "@xc-element/workspace",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "pnpm --filter @ns-element/play dev",
-    "story": "pnpm --filter @ns-element/play storybook",
-    "docs:dev": "pnpm --filter @ns-element/docs dev",
-    "docs:build": "pnpm --filter @ns-element/docs build",
-    "test": "pnpm --filter @ns-element/components test",
-    "build": "pnpm --filter ns-element build"
+    "dev": "pnpm run build && pnpm --filter @xc-element/play dev",
+    "story": "pnpm run build && pnpm --filter @xc-element/play storybook",
+    "docs:dev": "pnpm --filter @xc-element/docs dev",
+    "docs:build": "pnpm --filter @xc-element/docs build",
+    "test": "pnpm --filter @xc-element/components test",
+    "build": "pnpm --filter xc-element build"
   },
   "keywords": [],
   "author": "",
@@ -40,11 +40,11 @@
     "vue-tsc": "^1.8.27"
   },
   "dependencies": {
-    "@ns-element/hooks": "workspace:*",
-    "@ns-element/theme": "workspace:*",
-    "@ns-element/utils": "workspace:*",
+    "@xc-element/hooks": "workspace:*",
+    "@xc-element/theme": "workspace:*",
+    "@xc-element/utils": "workspace:*",
     "lodash-es": "^4.17.21",
-    "ns-element": "workspace:*",
+    "xc-element": "workspace:*",
     "vue": "^3.4.19"
   }
 }

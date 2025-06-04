@@ -3,9 +3,9 @@ import { ref, computed, inject } from 'vue'
 import type { ButtonProps, ButtonEmits, ButtonInstance } from './types'
 import { throttle } from 'lodash-es'
 import { BUTTON_GROUP_CTX_KEY } from './constants'
-import NsIcon from '../Icon/Icon.vue'
+import XcIcon from '../Icon/Icon.vue'
 defineOptions({
-  name: 'NsButton',
+  name: 'XcButton',
 })
 const props = withDefaults(defineProps<ButtonProps>(), {
   tag: 'button',
@@ -40,14 +40,14 @@ defineExpose<ButtonInstance>({
 <template>
   <component
     ref="_ref"
-    class="ns-button"
+    class="xc-button"
     :is="tag"
     :autofocus="autofocus"
     :type="tag === 'button' ? nativeType : void 0"
     :disabled="disabled || loading ? true : void 0"
     :class="{
-      [`ns-button--${type}`]: true,
-      [`ns-button--${size}`]: true,
+      [`xc-button--${type}`]: true,
+      [`xc-button--${size}`]: true,
       'is-plain': plain,
       'is-round': round,
       'is-circle': circle,
@@ -58,7 +58,7 @@ defineExpose<ButtonInstance>({
   >
     <template v-if="loading">
       <slot name="loading">
-        <NsIcon
+        <XcIcon
           class="loading-icon"
           :icon="loadingIcon ?? 'spinner'"
           :style="iconStyle"
@@ -67,7 +67,7 @@ defineExpose<ButtonInstance>({
         />
       </slot>
     </template>
-    <NsIcon v-if="icon && !loading" :icon="icon" :style="iconStyle" size="1x" />
+    <XcIcon v-if="icon && !loading" :icon="icon" :style="iconStyle" size="1x" />
     <slot></slot>
   </component>
 </template>

@@ -2,13 +2,13 @@ import type { Meta, StoryObj, ArgTypes } from '@storybook/vue3'
 import { fn, within, userEvent, expect, clearAllMocks } from '@storybook/test'
 import { set } from 'lodash-es'
 
-import { NsButton, NsButtonGroup } from 'ns-element'
+import { XcButton, XcButtonGroup } from 'xc-element'
 
-type Story = StoryObj<typeof NsButton> & { argTypes?: ArgTypes }
+type Story = StoryObj<typeof XcButton> & { argTypes?: ArgTypes }
 
-const meta: Meta<typeof NsButton> = {
+const meta: Meta<typeof XcButton> = {
   title: 'Example/Button',
-  component: NsButton,
+  component: XcButton,
   tags: ['autodocs'],
   argTypes: {
     type: {
@@ -69,12 +69,12 @@ export const Default: Story & { args: { content: string } } = {
     content: 'Button',
   },
   render: (args) => ({
-    components: { NsButton },
+    components: { XcButton },
     setup() {
       return { args }
     },
     template: container(
-      `<ns-button data-testid="story-test-btn" v-bind="args">{{args.content}}</ns-button>`
+      `<xc-button data-testid="story-test-btn" v-bind="args">{{args.content}}</xc-button>`
     ),
   }),
   play: async ({ canvasElement, args, step }) => {
@@ -146,14 +146,14 @@ export const Autofocus: Story & { args: { content: string } } = {
     autofocus: true,
   },
   render: (args) => ({
-    components: { NsButton },
+    components: { XcButton },
     setup() {
       return { args }
     },
     template: container(
       `
       <p>请点击浏览器的刷新页面来获取按钮聚焦</p>
-      <ns-button data-testid="story-test-btn" v-bind="args">{{args.content}}</ns-button>
+      <xc-button data-testid="story-test-btn" v-bind="args">{{args.content}}</xc-button>
       `
     ),
   }),
@@ -169,12 +169,12 @@ export const Circle: Story = {
     icon: 'Search',
   },
   render: (args) => ({
-    components: { NsButton },
+    components: { XcButton },
     setup() {
       return { args }
     },
     template: container(`
-      <ns-button circle v-bind="args"></ns-button>
+      <xc-button circle v-bind="args"></xc-button>
       `),
   }),
   play: async ({ canvasElement, args, step }) => {
@@ -215,15 +215,15 @@ export const Group: Story & { args: { content1: string; content2: string } } = {
     content2: 'Button2',
   },
   render: (args) => ({
-    components: { NsButton, NsButtonGroup },
+    components: { XcButton, XcButtonGroup },
     setup() {
       return { args }
     },
     template: container(`
-      <ns-button-group :type="args.groupType" :size="args.groupSize" :disabled="args.groupDisabled">
-        <ns-button v-bind="args">{{args.content1}}</ns-button>
-        <ns-button v-bind="args">{{args.content2}}</ns-button>
-      </ns-button-group>
+      <xc-button-group :type="args.groupType" :size="args.groupSize" :disabled="args.groupDisabled">
+        <xc-button v-bind="args">{{args.content1}}</xc-button>
+        <xc-button v-bind="args">{{args.content2}}</xc-button>
+      </xc-button-group>
       `),
   }),
   play: async ({ canvasElement, args, step }) => {

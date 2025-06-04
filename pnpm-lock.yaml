@@ -8,24 +8,24 @@ importers:
 
   .:
     dependencies:
-      '@ns-element/hooks':
+      '@xc-element/hooks':
         specifier: workspace:*
         version: link:packages/hooks
-      '@ns-element/theme':
+      '@xc-element/theme':
         specifier: workspace:*
         version: link:packages/theme
-      '@ns-element/utils':
+      '@xc-element/utils':
         specifier: workspace:*
         version: link:packages/utils
       lodash-es:
         specifier: ^4.17.21
         version: 4.17.21
-      ns-element:
-        specifier: workspace:*
-        version: link:packages/core
       vue:
         specifier: ^3.4.19
         version: 3.5.15(typescript@5.8.3)
+      xc-element:
+        specifier: workspace:*
+        version: link:packages/core
     devDependencies:
       '@fortawesome/fontawesome-svg-core':
         specifier: ^6.5.1
@@ -130,7 +130,7 @@ importers:
         specifier: ^3.4.19
         version: 3.5.15(typescript@5.8.3)
     devDependencies:
-      '@ns-element/components':
+      '@xc-element/components':
         specifier: workspace:*
         version: link:../components
       vite-plugin-dts:

@@ -65,13 +65,13 @@ packages/theme/package.json
 packages/utils/package.json
 
 ```
-name: @ns-element/components
-name: @ns-element/core
-name: @ns-element/docs
-name: @ns-element/hooks
-name: @ns-element/play
-name: @ns-element/theme
-name: @ns-element/utils
+name: @xc-element/components
+name: @xc-element/core
+name: @xc-element/docs
+name: @xc-element/hooks
+name: @xc-element/play
+name: @xc-element/theme
+name: @xc-element/utils
 ```
 
 cd..
@@ -81,34 +81,34 @@ pnpm add -w lodash-es@^4.17.21 vue@^3.4.19
 vim package.json
 
 ```
-"name": "@ns-element/workspace",
+"name": "@xc-element/workspace",
 "dependencies": {
-  "ns-element": "workspace:*",
-  "@ns-element/hooks": "workspace:*",
-  "@ns-element/utils": "workspace:*",
-  "@ns-element/theme": "workspace:*"
+  "xc-element": "workspace:*",
+  "@xc-element/hooks": "workspace:*",
+  "@xc-element/utils": "workspace:*",
+  "@xc-element/theme": "workspace:*"
 }
 ```
 
-pnpm add -D @vue/test-utils@^2.4.5 @vitest/coverage-v8@^1.4.0 jsdom@^24.0.0 --filter @ns-element/components
+pnpm add -D @vue/test-utils@^2.4.5 @vitest/coverage-v8@^1.4.0 jsdom@^24.0.0 --filter @xc-element/components
 pnpm add @popperjs/core@^2.11.8 async-validator@^4.2.5
---filter @ns-element/components
+--filter @xc-element/components
 
 vim packages/core/package.json
 
 ```
 "dependencies": {
-  "@ns-element/components": "workspace:*"
+  "@xc-element/components": "workspace:*"
 },
 ```
 
-pnpm add -D vitepress@1.0.0-rc.44 --filter @ns-element/docs
+pnpm add -D vitepress@1.0.0-rc.44 --filter @xc-element/docs
 
 vim packages/play/package.json
 
 ```
 {
-  "name": "@ns-element/play",
+  "name": "@xc-element/play",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -240,7 +240,7 @@ vim Button.vue
 
 <script lang="ts" setup>
 defineOptions({
-  name: 'NsButton',
+  name: 'XcButton',
 })
 </script>
 <template>
@@ -252,9 +252,9 @@ vim index.ts
 
 ```
 import Button from './Button.vue'
-import { withInstall } from '@ns-element/utils'
+import { withInstall } from '@xc-element/utils'
 
-export const NsButton = withInstall(Button)
+export const XcButton = withInstall(Button)
 ```
 
 cd packages/utils
@@ -275,22 +275,22 @@ cd packages/core
 vim components.ts
 
 ```
-import { NsButton } from '@ns-element/components'
+import { XcButton } from '@xc-element/components'
 import type { Plugin } from 'vue'
 
-export default [NsButton] as Plugin[]
+export default [XcButton] as Plugin[]
 ```
 
 cd packages/core
 vim index.ts
 
 ```
-import { makeInstaller } from '@ns-element/utils'
+import { makeInstaller } from '@xc-element/utils'
 import components from './components'
 
 export const installer = makeInstaller(components)
 
-export * from '@ns-element/components'
+export * from '@xc-element/components'
 export default installer
 ```
 
@@ -301,9 +301,9 @@ vim main.ts
 import { createApp } from 'vue'
 import './style.css'
 import App from './App.vue'
-import NsElement from 'ns-element'
+import XcElement from 'xc-element'
 
-createApp(App).use(NsElement).mount('#app')
+createApp(App).use(XcElement).mount('#app')
 ```
 
 vim App.vue
@@ -312,7 +312,7 @@ vim App.vue
 <script setup lang="ts"></script>
 
 <template>
-  <NsButton />
+  <XcButton />
 </template>
 
 <style scoped></style>
@@ -323,7 +323,7 @@ vim package.json
 
 ```
  "scripts": {
-    "dev": "pnpm --filter @ns-element/play dev"
+    "dev": "pnpm --filter @xc-element/play dev"
   },
 ```
 

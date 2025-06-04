@@ -3,7 +3,7 @@ import vue from '@vitejs/plugin-vue'
 import { resolve } from 'path'
 import dts from 'vite-plugin-dts'
 import { readdirSync } from 'fs'
-import { filter, map } from 'lodash-es'
+import { filter, map, includes } from 'lodash-es'
 
 // const COMP_NAMES = [
 //   'Alert',
@@ -46,7 +46,7 @@ export default defineConfig({
     outDir: 'dist/es',
     lib: {
       entry: resolve(__dirname, './index.ts'),
-      name: 'NsElement',
+      name: 'XcElement',
       fileName: 'index',
       formats: ['es'],
     },
@@ -71,7 +71,10 @@ export default defineConfig({
           if (id.includes('/packages/hooks')) {
             return 'hooks'
           }
-          if (id.includes('/packages/utils')) {
+          if (
+            id.includes('/packages/utils') ||
+            includes(id, 'plugin-vue:export-helper')
+          ) {
             return 'utils'
           }
           // for (const item of COMP_NAMES) {

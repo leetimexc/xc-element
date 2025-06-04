@@ -1,6 +1,6 @@
 <script setup lang="ts"></script>
 
 <template>
-  <NsButton type="primary" size="small">Button</NsButton>
-  <NsButton type="primary">Button</NsButton>
+  <XcButton type="primary" size="small">Button</XcButton>
+  <XcButton type="primary">Button</XcButton>
 </template>

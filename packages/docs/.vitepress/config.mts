@@ -2,9 +2,9 @@ import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: 'Ns-Element',
+  title: 'Xc-Element',
   description: '组件库',
-  base: '/ns-element/',
+  base: '/xc-element/',
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [

@@ -1,4 +1,7 @@
-import { NsButton, NsButtonGroup, NsIcon } from '@ns-element/components'
+import { XcButton, XcButtonGroup, XcIcon } from '@xc-element/components'
 import type { Plugin } from 'vue'
 
-export default [NsButton, NsButtonGroup, NsIcon] as Plugin[]
+// Add these named exports
+export { XcButton, XcButtonGroup, XcIcon };
+
+export default [XcButton, XcButtonGroup, XcIcon] as Plugin[];

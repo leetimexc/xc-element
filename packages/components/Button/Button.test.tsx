@@ -13,7 +13,7 @@ describe('Button.vue', () => {
       const wrapper = mount(Button, {
         props: { type: type as any },
       })
-      expect(wrapper.classes()).toContain(`ns-button--${type}`)
+      expect(wrapper.classes()).toContain(`xc-button--${type}`)
     })
   })
 
@@ -24,7 +24,7 @@ describe('Button.vue', () => {
       const wrapper = mount(Button, {
         props: { size: size as any },
       })
-      expect(wrapper.classes()).toContain(`ns-button--${size}`)
+      expect(wrapper.classes()).toContain(`xc-button--${size}`)
     })
   })
 
@@ -98,7 +98,7 @@ describe('Button.vue', () => {
     const wrapper = mount(Button, {
       props: { loading: true },
       global: {
-        stubs: ['NsIcon'],
+        stubs: ['XcIcon'],
       },
     })
     const iconElement = wrapper.findComponent(Icon)
@@ -120,7 +120,7 @@ describe('Button.vue', () => {
     ))
 
     // class
-    expect(wrapper.classes()).toContain('ns-button--primary')
+    expect(wrapper.classes()).toContain('xc-button--primary')
 
     // slot
     expect(wrapper.get('button').text()).toBe('button content')
@@ -159,7 +159,7 @@ describe('Button.vue', () => {
         default: 'loading button',
       },
       global: {
-        stubs: ['NsIcon'],
+        stubs: ['XcIcon'],
       },
     })
 
@@ -189,7 +189,7 @@ describe('Button.vue', () => {
         default: () => 'icon button',
       },
       global: {
-        stubs: ['NsIcon'],
+        stubs: ['XcIcon'],
       },
     })
 
@@ -207,7 +207,7 @@ describe('Button.vue', () => {
         </ButtonGroup>
       ));
 
-      expect(wrapper.classes()).toContain("ns-button-group");
+      expect(wrapper.classes()).toContain("xc-button-group");
     });
 
     test('button group size', () => {
@@ -221,7 +221,7 @@ describe('Button.vue', () => {
         ))
 
         const buttonWrapper = wrapper.findComponent(Button)
-        expect(buttonWrapper.classes()).toContain(`ns-button--${size}`)
+        expect(buttonWrapper.classes()).toContain(`xc-button--${size}`)
       })
     })
 
@@ -236,7 +236,7 @@ describe('Button.vue', () => {
         ))
 
         const buttonWrapper = wrapper.findComponent(Button)
-        expect(buttonWrapper.classes()).toContain(`ns-button--${type}`)
+        expect(buttonWrapper.classes()).toContain(`xc-button--${type}`)
       })
     })
 
