@@ -3,6 +3,7 @@ import type { CollapseItemProps } from './types'
 import { inject, computed } from 'vue'
 import { COLLAPSE_CTX_KEY } from './constants'
 import XcIcon from '../Icon/Icon.vue'
+import transitionEvents from './transitionEvents'
 
 defineOptions({ name: 'XcCollapseItem' })
 const props = defineProps<CollapseItemProps>()
@@ -37,13 +38,13 @@ function handleClick() {
       </span>
       <xc-icon icon="angle-right" class="header-angle" />
     </div>
-    <!-- <transition name="slide" v-on="transitionEvents"> -->
-    <div class="xc-collapse-item__wapper" v-show="isActive">
-      <div class="xc-collapse-item__content" :id="`item-content-${name}`">
-        <slot></slot>
+    <transition name="slide" v-on="transitionEvents">
+      <div class="xc-collapse-item__wapper" v-show="isActive">
+        <div class="xc-collapse-item__content" :id="`item-content-${name}`">
+          <slot></slot>
+        </div>
       </div>
-    </div>
-    <!-- </transition> -->
+    </transition>
   </div>
 </template>
 <style scoped>
