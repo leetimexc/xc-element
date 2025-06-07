@@ -3,7 +3,7 @@ import type { CollapseItemProps } from './types'
 import { inject, computed } from 'vue'
 import { COLLAPSE_CTX_KEY } from './constants'
 import XcIcon from '../Icon/Icon.vue'
-import transitionEvents from './transitionEvents'
+import transitionEvents from './transitionEvents.ts'
 
 defineOptions({ name: 'XcCollapseItem' })
 const props = defineProps<CollapseItemProps>()

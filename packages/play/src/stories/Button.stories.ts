@@ -3,6 +3,7 @@ import { fn, within, userEvent, expect, clearAllMocks } from '@storybook/test'
 import { set } from 'lodash-es'
 
 import { XcButton, XcButtonGroup } from 'xc-element'
+import 'xc-element/dist/theme/Button.css'
 
 type Story = StoryObj<typeof XcButton> & { argTypes?: ArgTypes }
 

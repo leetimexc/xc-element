@@ -7,6 +7,11 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [vue(), vueJsx()],
+  define: {
+    PROD: JSON.stringify(false),
+    DEV: JSON.stringify(true),
+    TEST: JSON.stringify(false),
+  },
   test: {
     globals: true,
     environment: 'jsdom',
