@@ -41,13 +41,13 @@ defineExpose<AlertInstance>({
       class="xc-alert"
       role="alert"
       :class="{
-        [`xc-alert__${type}`]: type,
-        [`xc-alert__${effect}`]: effect,
-        'text-center': center,
+        [`xc-alert__${props.type}`]: props.type,
+        [`xc-alert__${props.effect}`]: props.effect,
+        'text-center': props.center,
       }"
     >
       <XcIcon
-        v-if="showIcon"
+        v-if="props.showIcon"
         class="xc-alert__icon"
         :class="{ 'big-icon': withDescription }"
         :icon="iconName"
@@ -56,14 +56,14 @@ defineExpose<AlertInstance>({
         <span
           class="xc-alert__title"
           :class="{ 'with-desc': withDescription }"
-          :style="{ display: center && !showIcon ? 'flow' : 'inline' }"
+          :style="{ display: props.center && !props.showIcon ? 'flow' : 'inline' }"
         >
-          <slot name="title">{{ title }}</slot>
+          <slot name="title">{{ props.title }}</slot>
         </span>
         <p class="xc-alert__description">
-          <slot>{{ description }}</slot>
+          <slot>{{ props.description }}</slot>
         </p>
-        <div class="xc-alert__close" v-if="closable">
+        <div class="xc-alert__close" v-if="props.closable">
           <XcIcon @click.stop="close" icon="xmark" />
         </div>
       </div>

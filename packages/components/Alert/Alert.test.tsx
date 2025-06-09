@@ -11,6 +11,7 @@ describe("Alert.vue", () => {
     const wrapper = mount(Alert, {
       props: {
         title,
+        closable: true,
       },
       slots: {
         default: desc,
