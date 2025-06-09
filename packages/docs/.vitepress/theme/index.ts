@@ -3,7 +3,7 @@ import { ElementPlusContainer } from '@vitepress-demo-preview/component'
 import DefaultTheme from 'vitepress/theme'
 import XcElement from 'xc-element'
 
-import '@vitepress-demo-preview/component/style.css'
+import '@vitepress-demo-preview/component/dist/style.css'
 import 'xc-element/dist/index.css'
 
 export default {
