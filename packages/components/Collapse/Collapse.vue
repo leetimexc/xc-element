@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import type { CollapseProps, CollapseEmits, CollapseItemName } from './types'
-import { ref, provide, watch, watchEffect } from 'vue'
+import { ref, provide, watch } from 'vue'
 import { debugWarn } from '@xc-element/utils'
 import { COLLAPSE_CTX_KEY } from './constants'
 
-const COMP_NAME = 'XcCollapse' as const
+const COMPONENT_NAME = 'XcCollapse' as const
 
 defineOptions({
-  name: COMP_NAME,
+  name: COMPONENT_NAME,
 })
 
 const props = defineProps<CollapseProps>()
@@ -15,7 +15,7 @@ const emits = defineEmits<CollapseEmits>()
 const activeNames = ref(props.modelValue)
 
 if (props.accordion && activeNames.value.length > 1) {
-  console.warn('accordion mode should only have one active item')
+  debugWarn(COMPONENT_NAME, 'accordion mode should only have one active item')
 }
 
 function handleItemClick(item: CollapseItemName) {
@@ -44,11 +44,11 @@ function updateActiveNames(newNames: CollapseItemName[]) {
   emits('change', newNames)
 }
 
-watchEffect(() => {
-  if (props.accordion && activeNames.value.length > 1) {
-    debugWarn(COMP_NAME, 'accordion mode should only have one active item')
-  }
-})
+// watchEffect(() => {
+//   if (props.accordion && activeNames.value.length > 1) {
+//     debugWarn(COMP_NAME, 'accordion mode should only have one active item')
+//   }
+// })
 
 watch(
   () => props.modelValue,
