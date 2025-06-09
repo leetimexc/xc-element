@@ -1,0 +1,1 @@
+import{_ as t,a as e,b as o}from"./chunks/framework.BMzfWRDB.js";const i=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"components/button.md","filePath":"components/button.md"}'),n={name:"components/button.md"};function a(s,r,c,p,m,_){return o(),e("div")}const f=t(n,[["render",a]]);export{i as __pageData,f as default};
