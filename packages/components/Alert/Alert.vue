@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import type { AlertProps, AlertEmits, AlertInstance } from './types'
-import { ref } from 'vue'
+import { typeIconMap } from '@xc-element/utils'
+import { ref, computed } from 'vue'
 import XcIcon from '../Icon/Icon.vue'
 
 defineOptions({
@@ -15,6 +16,9 @@ const emit = defineEmits<AlertEmits>()
 const slots = defineSlots()
 
 const visible = ref(true)
+
+const iconName = computed(() => typeIconMap.get(props.type) ?? 'circle-info')
+const withDescription = computed(() => props.description || slots.default)
 
 function close() {
   visible.value = false
@@ -66,4 +70,6 @@ defineExpose<AlertInstance>({
     </div>
   </transition>
 </template>
-<style scoped></style>
+<style scoped>
+@import './style.css';
+</style>
