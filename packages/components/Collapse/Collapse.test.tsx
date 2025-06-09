@@ -2,8 +2,8 @@ import { beforeAll, describe, expect, test, vi } from 'vitest'
 import { DOMWrapper, mount, type VueWrapper } from '@vue/test-utils'
 import transitionEvents from './transitionEvents.ts'
 
-import Collapse from './Collapse.vue'
-import CollapseItem from './CollapseItem.vue'
+import Collapse from "./Collapse.vue";
+import CollapseItem from "./CollapseItem.vue";
 
 const onChange = vi.fn()
 
