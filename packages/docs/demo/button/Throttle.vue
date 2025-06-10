@@ -1,7 +1,8 @@
 <script setup>
-import { XcMessage } from 'xc-element'
+// import { XcMessage } from 'xc-element'
 function handleBtnClick() {
-  XcMessage.info('btn click')
+  // XcMessage.info('btn click')
+  console.log('btn click')
 }
 </script>
 
