@@ -6,9 +6,12 @@ class XcUIError extends Error {
     this.name = 'XcUIError'
   }
 }
+function createXcError(scope: string, msg: string) {
+  return new XcUIError(`[${scope}]:${msg}`)
+}
 
 export function throwError(scope: string, msg: string) {
-  throw new XcUIError(`[${scope}] ${msg}`)
+  throw createXcError(scope, msg)
 }
 
 export function debugWarn(error: Error): void
