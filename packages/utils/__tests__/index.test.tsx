@@ -5,7 +5,7 @@ import {
   withInstall,
   makeInstaller,
   typeIconMap,
-} from '..'
+} from '../'
 import { each } from 'lodash-es'
 
 describe('utils/index', () => {

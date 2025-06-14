@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from 'vitest'
-import { debugWarn, throwError } from '../error'
+import { throwError,debugWarn } from '../error'
 
 describe('error', () => {
   it('throwError should be worked', () => {
