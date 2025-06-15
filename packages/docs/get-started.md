@@ -36,7 +36,7 @@ createApp(App).use(XcElement).mount('#app')
 
 **单个导入**
 
-Eric-UI 提供了基于 ES Module 的开箱即用的 Tree Shaking 功能。
+Xc-element 提供了基于 ES Module 的开箱即用的 Tree Shaking 功能。
 
 ```vue
 <template>

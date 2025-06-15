@@ -1,8 +1,8 @@
 <script setup>
-import { ErMessage } from 'eric-ui'
+import { XcMessage } from 'xc-element'
 
 function handleClose() {
-  ErMessage.info('close callback')
+  XcMessage.info('close callback')
 }
 </script>
 <template>

@@ -4,7 +4,7 @@
   <xc-button
     type="primary"
     tag="a"
-    href="https://github.com/EricWXY/eric-ui"
+    href="https://github.com/leetimexc/xc-element"
     target="_blank"
     rel="noopener noreferrer"
   >
