@@ -4,6 +4,7 @@ import type { ButtonProps, ButtonEmits, ButtonInstance } from './types'
 import { throttle } from 'lodash-es'
 import { BUTTON_GROUP_CTX_KEY } from './constants'
 import XcIcon from '../Icon/Icon.vue'
+
 defineOptions({
   name: 'XcButton',
 })

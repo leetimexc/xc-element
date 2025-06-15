@@ -11,7 +11,7 @@ const AppComp = defineComponent({
 
 const componentA = withInstall(
   defineComponent({
-    name: 'test',
+    name: 'componentA',
     setup() {
       return () => <div>test</div>
     }
@@ -20,7 +20,7 @@ const componentA = withInstall(
 
 const componentB = withInstall(
   defineComponent({
-    name: 'test2',
+    name: 'componentB',
     setup() {
       return () => <div>test2</div>
     },
@@ -32,13 +32,14 @@ describe('install', () => {
     const wrapper = mount(() => <div id="app"></div>)
     const app = createApp(AppComp)
 
-    app.use(componentA).use(componentB).mount(wrapper.element)
+    app.use(componentA).mount(wrapper.element)
 
     expect(componentA.install).toBeDefined()
     expect(componentB.install).toBeDefined()
-    expect(wrapper.findComponent(componentA)).toBeTruthy()
-    expect(wrapper.findComponent(componentB)).toBeTruthy()
+    expect(app._context.components['componentA']).toBeTruthy()
+    expect(app._context.components['componentB']).toBeFalsy()
   })
+
   it('makeInstaller should be worked', () => {
     const wrapper = mount(() => <div id="app"></div>)
     const app = createApp(AppComp)

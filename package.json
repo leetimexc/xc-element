@@ -8,7 +8,7 @@
     "story": "pnpm --filter @xc-element/play storybook",
     "docs:dev": "pnpm --filter @xc-element/docs dev",
     "docs:build": "pnpm --filter @xc-element/docs build",
-    "test": "run-p test-utils test-comp",
+    "test": "run-s test-utils test-comp",
     "test-comp": "cross-env NODE_ENV=test pnpm --filter @xc-element/components test",
     "test-utils": "cross-env NODE_ENV=test pnpm --filter @xc-element/utils test",
     "build": "cross-env NODE_ENV=production pnpm --filter xc-element build",
