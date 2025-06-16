@@ -3,13 +3,20 @@ import type { TooltipProps, TooltipEmits, TooltipInstance } from './types'
 import { createPopper, type Instance } from '@popperjs/core'
 import { ref, computed, watch, watchEffect, onUnmounted, type Ref } from 'vue'
 import { bind, debounce, isNil, type DebouncedFunc } from 'lodash-es'
-import { useEventListener, useClickOutside } from '@xc-element/hooks'
+import { useClickOutside } from '@xc-element/hooks'
+
+import useEvenstToTiggerNode from './useEventsToTiggerNode'
+
+interface _TooltipProps extends TooltipProps {
+  virtualRef?: HTMLElement | ButtonInstance | void
+  virtualTriggering?: boolean
+}
 
 defineOptions({
   name: 'XcTooltip',
 })
 
-const props = withDefaults(defineProps<TooltipProps>(), {
+const props = withDefaults(defineProps<_TooltipProps>(), {
   placement: 'bottom',
   trigger: 'hover',
   transition: 'fade',
@@ -25,18 +32,19 @@ const dropdownEvents: Ref<Record<string, EventListener>> = ref({})
 
 const containerNode = ref<HTMLElement>()
 const popperNode = ref<HTMLElement>()
-const triggerNode = ref<HTMLElement>()
+const _triggerNode = ref<HTMLElement>()
 
-// const triggerNode = computed(() => {
-//   if (props.virtualTriggering)
-//     return (
-//       // @tips any 为了 fix 一个初始设计上的小失误 （后续重构 "虚拟目标节点" 时解决）
-//       ((props.virtualRef as ButtonInstance)?.ref as any) ??
-//       (props.virtualRef as HTMLElement) ??
-//       _triggerNode.value
-//     )
-//   return _triggerNode.value as HTMLElement
-// })
+const triggerNode = computed(() => {
+  if (props.virtualTriggering)
+    return (props.virtualRef as HTMLElement) ?? _triggerNode.value
+  // return (
+  //   // @tips any 为了 fix 一个初始设计上的小失误 （后续重构 "虚拟目标节点" 时解决）
+  //   ((props.virtualRef as ButtonInstance)?.ref as any) ??
+  //   (props.virtualRef as HTMLElement) ??
+  //   _triggerNode.value
+  // )
+  return _triggerNode.value as HTMLElement
+})
 
 const popperOptions = computed(() => ({
   placement: props.placement,
@@ -212,10 +220,10 @@ watchEffect(() => {
   closeDebounce = debounce(bind(setVisible, null, false), closeDelay.value)
 })
 
-// useEvenstToTiggerNode(props, triggerNode, events, () => {
-//   openDebounce?.cancel()
-//   setVisible(false)
-// })
+useEvenstToTiggerNode(props, triggerNode, events, () => {
+  openDebounce?.cancel()
+  setVisible(false)
+})
 
 onUnmounted(() => {
   destroyPopperInstance()
@@ -253,3 +261,6 @@ defineExpose<TooltipInstance>({
     </transition>
   </div>
 </template>
+<style scoped>
+@import './style.css';
+</style>

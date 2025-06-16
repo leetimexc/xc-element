@@ -5,6 +5,7 @@ import {
   XcCollapse,
   XcCollapseItem,
   XcAlert,
+  XcTooltip,
 } from '@xc-element/components'
 import type { Plugin } from 'vue'
 
@@ -18,4 +19,5 @@ export default [
   XcCollapse,
   XcCollapseItem,
   XcAlert,
+  XcTooltip,
 ] as Plugin[]
