@@ -1,6 +1,6 @@
 import type { Plugin } from 'vue'
 import { describe, expect, it } from 'vitest'
-import { XcAlert,XcButton,XcButtonGroup,XcCollapse,XcCollapseItem,XcIcon } from '..'
+import { XcAlert,XcButton,XcButtonGroup,XcCollapse,XcCollapseItem,XcIcon,XcTooltip } from '..'
 import { map,get } from 'lodash-es'
 
 const comps = [
@@ -10,6 +10,7 @@ const comps = [
   XcCollapse,
   XcCollapseItem,
   XcIcon,
+  XcTooltip,
 ] as Plugin[]
 
 describe('components/index', () => {
