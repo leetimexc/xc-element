@@ -35,8 +35,9 @@ const popperNode = ref<HTMLElement>()
 const _triggerNode = ref<HTMLElement>()
 
 const triggerNode = computed(() => {
-  if (props.virtualTriggering)
+  if (props.virtualTriggering) {
     return (props.virtualRef as HTMLElement) ?? _triggerNode.value
+  }
   // return (
   //   // @tips any 为了 fix 一个初始设计上的小失误 （后续重构 "虚拟目标节点" 时解决）
   //   ((props.virtualRef as ButtonInstance)?.ref as any) ??
@@ -67,27 +68,27 @@ const closeDelay = computed(() =>
   props.trigger === 'hover' ? props.hideTimeout : 0
 )
 
-// const triggerStrategyMap: Map<string, () => void> = new Map()
-// triggerStrategyMap.set('hover', () => {
-//   events.value['mouseenter'] = openFinal
-//   outerEvents.value['mouseleave'] = closeFinal
-//   dropdownEvents.value['mouseenter'] = openFinal
-// })
-// triggerStrategyMap.set('click', () => {
-//   events.value['click'] = togglePopper
-// })
-// triggerStrategyMap.set('contextmenu', () => {
-//   events.value['contextmenu'] = (e) => {
-//     e.preventDefault()
-//     openFinal()
-//   }
-// })
+const triggerStrategyMap: Map<string, () => void> = new Map()
+triggerStrategyMap.set('hover', () => {
+  events.value['mouseenter'] = openFinal
+  outerEvents.value['mouseleave'] = closeFinal
+  dropdownEvents.value['mouseenter'] = openFinal
+})
+triggerStrategyMap.set('click', () => {
+  events.value['click'] = togglePopper
+})
+triggerStrategyMap.set('contextmenu', () => {
+  events.value['contextmenu'] = (e) => {
+    e.preventDefault()
+    openFinal()
+  }
+})
 
 let openDebounce: DebouncedFunc<() => void> | void
 let closeDebounce: DebouncedFunc<() => void> | void
 
 function openFinal() {
-  closeDebounce?.cancel()
+  // closeDebounce?.cancel()
   openDebounce?.()
 }
 
@@ -108,27 +109,28 @@ function setVisible(val: boolean) {
 
 function attachEvents() {
   if (props.disabled || props.manual) return
-  // triggerStrategyMap.get(props.trigger)?.()
-  if (props.trigger === 'hover') {
-    events.value['mouseenter'] = openFinal
-    outerEvents.value['mouseleave'] = closeFinal
-    dropdownEvents.value['mouseenter'] = openFinal
-    return
-  }
-  if (props.trigger === 'click') {
-    events.value['click'] = togglePopper
-    return
-  }
-  if (props.trigger === 'contextmenu') {
-    events.value['contextmenu'] = (e) => {
-      e.preventDefault()
-      openFinal()
-    }
-    return
-  }
+  triggerStrategyMap.get(props.trigger)?.()
+  // if (props.trigger === 'hover') {
+  //   events.value['mouseenter'] = openFinal
+  //   outerEvents.value['mouseleave'] = closeFinal
+  //   dropdownEvents.value['mouseenter'] = openFinal
+  //   return
+  // }
+  // if (props.trigger === 'click') {
+  //   events.value['click'] = togglePopper
+  //   return
+  // }
+  // if (props.trigger === 'contextmenu') {
+  //   events.value['contextmenu'] = (e) => {
+  //     e.preventDefault()
+  //     openFinal()
+  //   }
+  //   return
+  // }
 }
 
 let popperInstance: null | Instance
+
 function destroyPopperInstance() {
   if (isNil(popperInstance)) return
   popperInstance?.destroy()
@@ -143,9 +145,9 @@ function resetEvents() {
   attachEvents()
 }
 
-if (!props.manual) {
-  attachEvents()
-}
+// if (!props.manual) {
+//   attachEvents()
+// }
 
 const show: TooltipInstance['show'] = openFinal
 
