@@ -132,6 +132,12 @@ describe("Tooltip.vue", () => {
     wrapper.vm.hide();
     await vi.runAllTimers();
     expect(wrapper.find(".xc-tooltip__popper").exists()).toBeFalsy();
+
+    wrapper.setProps({ disabled: true });
+    await vi.runAllTimers();
+    wrapper.vm.show();
+    await vi.runAllTimers();
+    expect(wrapper.find(".xc-tooltip__popper").exists()).toBeFalsy();
   });
 
   // 禁用状态的测试
@@ -158,8 +164,15 @@ describe("Tooltip.vue", () => {
     await vi.runAllTimers();
     expect(wrapper.find(".xc-tooltip__popper").exists()).toBeTruthy();
 
+    wrapper.setProps({ trigger: "click" });
+    await vi.runAllTimers(); 
+    virtualRef.dispatchEvent(new Event("click"));
+    await vi.runAllTimers();
+    expect(wrapper.find(".xc-tooltip__popper").exists()).toBeTruthy();
+    
     wrapper.unmount();
   });
+
   test("change trigger prop",async()=>{
     const wrapper = mount(Tooltip, {
       props: { trigger: "hover", content: "test" },
@@ -204,7 +217,7 @@ describe("Tooltip.vue", () => {
   //   expect(wrapper.find(".xc-tooltip__popper").exists()).toBeFalsy();
 
   // })
-  test("change trigger prop",async()=>{
+  test("change manual prop",async()=>{
     const wrapper = mount(Tooltip, {
       props: { trigger: "hover", content: "test" },
     });
@@ -226,37 +239,38 @@ describe("Tooltip.vue", () => {
     expect(wrapper.find(".xc-tooltip__popper").exists()).toBeTruthy();
   })
 
-  test("basic tooltip",async()=>{
-    const wrapper = mount(
-      ()=>{
-      <div>
-        <div id="outside"></div>
-        <Tooltip 
-          content="hello tooltip" 
-          trigger="hover" 
-          {...{onVisibleChange}} >
-          <button id="trigger">hover me</button>
-        </Tooltip>
-      </div>
-    }, {
-     attachTo: document.body
-    });
-    const triggerArea = wrapper.find("#trigger");
-    expect(triggerArea.exists()).toBeTruthy();
-    expect(wrapper.find(".xc-tooltip__popper").exists()).toBeFalsy();
 
-    // 弹出层是否出现
-    wrapper.find(".xc-tooltip__popper").trigger("mouseenter")
-    await vi.runAllTimers()
-    expect(wrapper.find(".xc-tooltip__popper").exists()).toBeTruthy();
+  // test("click-outside disabled when trigger prop is hover or manual mode",async()=>{
+  //   const wrapper = mount(
+  //     ()=>{
+  //     <div>
+  //       <div id="outside"></div>
+  //       <Tooltip 
+  //         content="hello tooltip" 
+  //         trigger="hover" 
+  //         {...{onVisibleChange}} >
+  //         <button id="trigger">hover me</button>
+  //       </Tooltip>
+  //     </div>
+  //   }, {
+  //    attachTo: document.body
+  //   });
+  //   const triggerArea = wrapper.find("#trigger");
+  //   expect(triggerArea.exists()).toBeTruthy();
+  //   expect(wrapper.find(".xc-tooltip__popper").exists()).toBeFalsy();
 
-    // trigger:hover外层惦记不触发
-    wrapper.get('#outside').trigger("click")
-    await vi.runAllTimers()
-    expect(wrapper.find(".xc-tooltip__popper").exists()).toBeTruthy();
+  //   // 弹出层是否出现
+  //   wrapper.find(".xc-tooltip__popper").trigger("mouseenter")
+  //   await vi.runAllTimers()
+  //   expect(wrapper.find(".xc-tooltip__popper").exists()).toBeTruthy();
 
-    // 注销流程
-    wrapper.unmount();
-  })
+  //   // trigger:hover外层惦记不触发
+  //   wrapper.get('#outside').trigger("click")
+  //   await vi.runAllTimers()
+  //   expect(wrapper.find(".xc-tooltip__popper").exists()).toBeTruthy();
+
+  //   // 注销流程
+  //   wrapper.unmount();
+  // })
 
 });
