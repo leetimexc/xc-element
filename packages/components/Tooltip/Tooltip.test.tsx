@@ -157,5 +157,106 @@ describe("Tooltip.vue", () => {
     virtualRef.dispatchEvent(new Event("mouseenter"));
     await vi.runAllTimers();
     expect(wrapper.find(".xc-tooltip__popper").exists()).toBeTruthy();
+
+    wrapper.unmount();
   });
+  test("change trigger prop",async()=>{
+    const wrapper = mount(Tooltip, {
+      props: { trigger: "hover", content: "test" },
+    });
+
+    wrapper.setProps({ trigger: "click" });
+
+    await vi.runAllTimers();
+    wrapper.find(".xc-tooltip__trigger").trigger("click");
+
+    await vi.runAllTimers();
+    expect(wrapper.find(".xc-tooltip__popper").exists()).toBeTruthy();
+
+    wrapper.find(".xc-tooltip__trigger").trigger("click");
+
+    await vi.runAllTimers();
+    wrapper.find(".xc-tooltip__trigger").trigger("hover");
+
+    await vi.runAllTimers();
+    expect(wrapper.find(".xc-tooltip__popper").exists()).toBeFalsy();
+
+  })
+  // test("change trigger prop",async()=>{
+  //   const wrapper = mount(Tooltip, {
+  //     props: { trigger: "hover", content: "test" },
+  //   });
+
+  //   wrapper.setProps({ trigger: "click" });
+
+  //   await vi.runAllTimers();
+  //   wrapper.find(".xc-tooltip__trigger").trigger("click");
+
+  //   await vi.runAllTimers();
+  //   expect(wrapper.find(".xc-tooltip__popper").exists()).toBeTruthy();
+
+  //   wrapper.find(".xc-tooltip__trigger").trigger("click");
+
+  //   await vi.runAllTimers();
+  //   wrapper.find(".xc-tooltip__trigger").trigger("hover");
+
+  //   await vi.runAllTimers();
+  //   expect(wrapper.find(".xc-tooltip__popper").exists()).toBeFalsy();
+
+  // })
+  test("change trigger prop",async()=>{
+    const wrapper = mount(Tooltip, {
+      props: { trigger: "hover", content: "test" },
+    });
+
+    wrapper.setProps({ manual: true });
+    await vi.runAllTimers();
+
+    wrapper.find(".xc-tooltip__trigger").trigger("hover");
+
+    await vi.runAllTimers();
+    expect(wrapper.find(".xc-tooltip__popper").exists()).toBeFalsy();
+
+    wrapper.setProps({ manual: false, trigger: "contextmenu" });
+
+    await vi.runAllTimers();
+    wrapper.find(".xc-tooltip__trigger").trigger("contextmenu");
+
+    await vi.runAllTimers();
+    expect(wrapper.find(".xc-tooltip__popper").exists()).toBeTruthy();
+  })
+
+  test("basic tooltip",async()=>{
+    const wrapper = mount(
+      ()=>{
+      <div>
+        <div id="outside"></div>
+        <Tooltip 
+          content="hello tooltip" 
+          trigger="hover" 
+          {...{onVisibleChange}} >
+          <button id="trigger">hover me</button>
+        </Tooltip>
+      </div>
+    }, {
+     attachTo: document.body
+    });
+    const triggerArea = wrapper.find("#trigger");
+    expect(triggerArea.exists()).toBeTruthy();
+    expect(wrapper.find(".xc-tooltip__popper").exists()).toBeFalsy();
+
+    // 弹出层是否出现
+    wrapper.find(".xc-tooltip__popper").trigger("mouseenter")
+    await vi.runAllTimers()
+    expect(wrapper.find(".xc-tooltip__popper").exists()).toBeTruthy();
+
+    // trigger:hover外层惦记不触发
+    wrapper.get('#outside').trigger("click")
+    await vi.runAllTimers()
+    expect(wrapper.find(".xc-tooltip__popper").exists()).toBeTruthy();
+
+    // 注销流程
+    wrapper.unmount();
+  })
+
 });
