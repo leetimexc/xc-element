@@ -6,6 +6,7 @@ import {
   XcCollapseItem,
   XcAlert,
   XcTooltip,
+  XcPopconfirm,
 } from '@xc-element/components'
 import type { Plugin } from 'vue'
 
@@ -20,4 +21,5 @@ export default [
   XcCollapseItem,
   XcAlert,
   XcTooltip,
+  XcPopconfirm,
 ] as Plugin[]
