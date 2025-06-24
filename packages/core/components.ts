@@ -7,6 +7,8 @@ import {
   XcAlert,
   XcTooltip,
   XcPopconfirm,
+  XcDropdown,
+  XcDropdownItem,
 } from '@xc-element/components'
 import type { Plugin } from 'vue'
 
@@ -22,4 +24,6 @@ export default [
   XcAlert,
   XcTooltip,
   XcPopconfirm,
+  XcDropdown,
+  XcDropdownItem,
 ] as Plugin[]
