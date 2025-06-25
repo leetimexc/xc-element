@@ -17,6 +17,9 @@ importers:
       '@xc-element/hooks':
         specifier: workspace:*
         version: link:packages/hooks
+      '@xc-element/locale':
+        specifier: workspace:*
+        version: link:packages/locale
       '@xc-element/theme':
         specifier: workspace:*
         version: link:packages/theme
@@ -117,6 +120,9 @@ importers:
       vue-tsc:
         specifier: ^1.8.27
         version: 1.8.27(typescript@5.8.3)
+      vue3-i18n:
+        specifier: ^1.1.5
+        version: 1.1.5(vue@3.5.15(typescript@5.8.3))
 
   libs/vite-plugins: {}
 
@@ -193,7 +199,16 @@ importers:
         specifier: workspace:*
         version: link:../../libs/vitepress-preview-component
 
-  packages/hooks: {}
+  packages/hooks:
+    dependencies:
+      lodash-es:
+        specifier: ^4.17.21
+        version: 4.17.21
+      vue:
+        specifier: ^3.4.27
+        version: 3.5.15(typescript@5.8.3)
+
+  packages/locale: {}
 
   packages/play:
     devDependencies:
@@ -4971,6 +4986,11 @@ packages:
     hasBin: true
     peerDependencies:
       typescript: '*'
+
+  vue3-i18n@1.1.5:
+    resolution: {integrity: sha512-DN5XfE0z6BnFxjbP/qW8AKI5QCex97L2l8z7G76ccTkfTsJ18n4mXGCy4K9H2rm4FlzDx/USPlPqQK64yXQqDg==}
+    peerDependencies:
+      vue: ^3.0.0
 
   vue@3.5.15:
     resolution: {integrity: sha512-aD9zK4rB43JAMK/5BmS4LdPiEp8Fdh8P1Ve/XNuMF5YRf78fCyPE6FUbQwcaWQ5oZ1R2CD9NKE0FFOVpMR7gEQ==}
@@ -10257,6 +10277,10 @@ snapshots:
       '@vue/language-core': 1.8.27(typescript@5.8.3)
       semver: 7.7.2
       typescript: 5.8.3
+
+  vue3-i18n@1.1.5(vue@3.5.15(typescript@5.8.3)):
+    dependencies:
+      vue: 3.5.15(typescript@5.8.3)
 
   vue@3.5.15(typescript@5.8.3):
     dependencies:

@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { ref, computed } from 'vue'
 import { addUnit } from '@xc-element/utils'
+import { useLocale } from '@xc-element/hooks'
 import type { TooltipInstance } from '../Tooltip'
 import type { PopconfirmProps, PopconfirmEmits } from './types'
 
@@ -15,9 +16,9 @@ defineOptions({
 const props = withDefaults(defineProps<PopconfirmProps>(), {
   title: '',
   confirmButtonType: 'primary',
-  confirmButtonText: 'Yes',
-  cancelButtonText: 'No',
-  icon: 'question-circle',
+  // confirmButtonText: 'Yes',
+  // cancelButtonText: 'No',
+  // icon: 'question-circle',
   iconColor: '#f90',
   hideAfter: 200,
   width: 150,
@@ -26,6 +27,8 @@ const props = withDefaults(defineProps<PopconfirmProps>(), {
 const emits = defineEmits<PopconfirmEmits>()
 const tooltipRef = ref<TooltipInstance>()
 const style = computed(() => ({ width: addUnit(props.width) }))
+
+const { t } = useLocale()
 
 function hidePopper() {
   tooltipRef.value?.hide()
@@ -56,7 +59,7 @@ function cancel(e: MouseEvent) {
             :type="cancelButtonType"
             @click="cancel"
           >
-            {{ cancelButtonText }}
+            {{ cancelButtonText || t('popconfirm.cancelButtonText') }}
           </xc-button>
           <xc-button
             size="small"
@@ -64,7 +67,7 @@ function cancel(e: MouseEvent) {
             :type="confirmButtonType"
             @click="confirm"
           >
-            {{ confirmButtonText }}
+            {{ confirmButtonText || t('popconfirm.confirmButtonText') }}
           </xc-button>
         </div>
       </div>
