@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script setup lang="ts">
 import { ref, computed } from 'vue'
 import { addUnit } from '@xc-element/utils'
 import { useLocale } from '@xc-element/hooks'
@@ -16,9 +16,7 @@ defineOptions({
 const props = withDefaults(defineProps<PopconfirmProps>(), {
   title: '',
   confirmButtonType: 'primary',
-  // confirmButtonText: 'Yes',
-  // cancelButtonText: 'No',
-  // icon: 'question-circle',
+  icon: 'question-circle',
   iconColor: '#f90',
   hideAfter: 200,
   width: 150,
@@ -28,12 +26,13 @@ const emits = defineEmits<PopconfirmEmits>()
 const tooltipRef = ref<TooltipInstance>()
 const style = computed(() => ({ width: addUnit(props.width) }))
 
-const { t } = useLocale()
+const locale = useLocale()
 
 function hidePopper() {
   tooltipRef.value?.hide()
 }
-function confirm(e: MouseEvent) {
+
+function confrim(e: MouseEvent) {
   emits('confirm', e)
   hidePopper()
 }
@@ -54,20 +53,20 @@ function cancel(e: MouseEvent) {
         </div>
         <div class="xc-popconfirm__action">
           <xc-button
-            size="small"
             class="xc-popconfirm__cancel"
+            size="small"
             :type="cancelButtonType"
             @click="cancel"
           >
-            {{ cancelButtonText || t('popconfirm.cancelButtonText') }}
+            {{ cancelButtonText || locale.t('popconfirm.cancelButtonText') }}
           </xc-button>
           <xc-button
-            size="small"
             class="xc-popconfirm__confirm"
+            size="small"
             :type="confirmButtonType"
-            @click="confirm"
+            @click="confrim"
           >
-            {{ confirmButtonText || t('popconfirm.confirmButtonText') }}
+            {{ confirmButtonText || locale.t('popconfirm.confirmButtonText') }}
           </xc-button>
         </div>
       </div>

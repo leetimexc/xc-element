@@ -5,7 +5,7 @@ import { ref, computed, watch, watchEffect, onUnmounted, type Ref } from 'vue'
 import { bind, debounce, isNil, type DebouncedFunc } from 'lodash-es'
 import { useClickOutside } from '@xc-element/hooks'
 
-import useEvenstToTiggerNode from './useEventsToTiggerNode'
+import useEventsToTiggerNode from './useEventsToTiggerNode'
 
 interface _TooltipProps extends TooltipProps {
   virtualRef?: HTMLElement | ButtonInstance | void
@@ -222,7 +222,7 @@ watchEffect(() => {
   closeDebounce = debounce(bind(setVisible, null, false), closeDelay.value)
 })
 
-useEvenstToTiggerNode(props, triggerNode, events, () => {
+useEventsToTiggerNode(props, triggerNode, events, () => {
   openDebounce?.cancel()
   setVisible(false)
 })
