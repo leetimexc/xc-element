@@ -1,4 +1,4 @@
-import { defineComponent, DefineComponent } from 'vue'
+import { defineComponent } from 'vue'
 import { isFunction } from 'lodash-es'
 
 export const typeIconMap = new Map([

@@ -10,12 +10,14 @@ import type {
   MessageType,
 } from './types'
 import { messageTypes } from './types'
-import { isString, findIndex, set, each } from 'lodash-es'
+import { useId, useZIndex } from '@xc-element/hooks'
+import { isString, findIndex, set, each, get } from 'lodash-es'
 import MessageConstructor from './Message.vue'
 
-let seed = 0
+// let seed = 0
 
 const instances: MessageInstance[] = shallowReactive([])
+const { nextZIndex } = useZIndex()
 
 export const messageDefaults = {
   type: 'info',
@@ -35,7 +37,8 @@ const normalizedOptions = (opts: MessageParams): CreateMessageProps => {
 }
 
 const createMessage = (props: CreateMessageProps): MessageInstance => {
-  const id = `message_${seed++}`
+  // const id = `message_${seed++}`
+  const id = useId().value
   const container = document.createElement('div')
 
   const destory = () => {
@@ -49,7 +52,7 @@ const createMessage = (props: CreateMessageProps): MessageInstance => {
   const _props: MessageProps = {
     ...props,
     id,
-    zIndex: 200,
+    zIndex: nextZIndex(),
     onDestory: destory,
   }
   const vnode = h(MessageConstructor, _props)
@@ -72,6 +75,13 @@ const createMessage = (props: CreateMessageProps): MessageInstance => {
   instances.push(instance)
 
   return instance
+}
+
+export function getLastBottomOffset(this: MessageProps) {
+  const idx = findIndex(instances, { id: this.id })
+  if (idx <= 0) return 0
+
+  return get(instances, [idx - 1, 'vm', 'exposed', 'bottomOffset', 'value'])
 }
 
 export const message: MessageFn & Partial<Message> = (options = {}) => {

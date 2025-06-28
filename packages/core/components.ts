@@ -9,6 +9,7 @@ import {
   XcDropdown,
   XcDropdownItem,
   XcPopconfirm,
+  XcMessage,
 } from '@xc-element/components'
 import type { Plugin } from 'vue'
 
@@ -26,4 +27,5 @@ export default [
   XcDropdown,
   XcDropdownItem,
   XcPopconfirm,
+  XcMessage,
 ] as Plugin[]

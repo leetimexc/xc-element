@@ -9,6 +9,7 @@ import {
   zhCn,
   zhTw,
   XcConfigProvider,
+  XcMessage,
 } from 'xc-element'
 import { get } from 'lodash-es'
 import { computed, ref } from 'vue'
@@ -38,6 +39,34 @@ function confirm() {
 }
 function cancel() {
   console.log('cancel')
+}
+
+const open1 = () => {
+  XcMessage({
+    showClose: true,
+    message: 'This is a message.',
+  })
+}
+const open2 = () => {
+  XcMessage({
+    showClose: true,
+    message: 'Congrats, this is a success message.',
+    type: 'success',
+  })
+}
+const open3 = () => {
+  XcMessage({
+    showClose: true,
+    message: 'Warning, this is a warning message.',
+    type: 'warning',
+  })
+}
+const open4 = () => {
+  XcMessage({
+    showClose: true,
+    message: 'Oops, this is a error message.',
+    type: 'danger',
+  })
 }
 </script>
 
@@ -71,4 +100,8 @@ function cancel() {
       <xc-button>Delete</xc-button>
     </xc-popconfirm>
   </xc-config-provider>
+  <xc-button @click="open1">open1</xc-button>
+  <xc-button @click="open2">open2</xc-button>
+  <xc-button @click="open3">open3</xc-button>
+  <xc-button @click="open4">open4</xc-button>
 </template>
