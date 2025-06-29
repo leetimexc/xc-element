@@ -10,9 +10,10 @@ import {
   zhTw,
   XcConfigProvider,
   XcMessage,
+  XcNotification,
 } from 'xc-element'
 import { get } from 'lodash-es'
-import { computed, ref } from 'vue'
+import { computed, ref, h } from 'vue'
 
 const language = ref('')
 const langMap = {
@@ -68,6 +69,22 @@ const open4 = () => {
     type: 'danger',
   })
 }
+function openNotify1() {
+  XcNotification({
+    title: 'Title',
+    message: h('i', { style: 'color:teal' }, 'This is a remider'),
+    position: 'bottom-right',
+  })
+}
+
+function openNotify2() {
+  XcNotification({
+    title: 'Prompt',
+    message: 'This is a message that does not auto close',
+    duration: 0,
+    position: 'top-left',
+  })
+}
 </script>
 
 <template>
@@ -104,4 +121,6 @@ const open4 = () => {
   <xc-button @click="open2">open2</xc-button>
   <xc-button @click="open3">open3</xc-button>
   <xc-button @click="open4">open4</xc-button>
+  <xc-button @click="openNotify1" plain>Closes automatically</xc-button>
+  <xc-button @click="openNotify2" plain>Won't closes automatically</xc-button>
 </template>
