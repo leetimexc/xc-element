@@ -15,7 +15,7 @@ import {
 import { get } from 'lodash-es'
 import { computed, ref, h } from 'vue'
 
-const language = ref('')
+const language = ref('zhTw')
 const langMap = {
   ja,
   ko,
