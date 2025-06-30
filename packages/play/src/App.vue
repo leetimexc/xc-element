@@ -13,7 +13,12 @@ import {
   XcNotification,
 } from 'xc-element'
 import { get } from 'lodash-es'
-import { computed, ref, h } from 'vue'
+import { computed, ref, reactive, h } from 'vue'
+
+const form = reactive({
+  name: '',
+  desc: '',
+})
 
 const language = ref('zhTw')
 const langMap = {
@@ -123,4 +128,6 @@ function openNotify2() {
   <xc-button @click="open4">open4</xc-button>
   <xc-button @click="openNotify1" plain>Closes automatically</xc-button>
   <xc-button @click="openNotify2" plain>Won't closes automatically</xc-button>
+  <xc-input v-model="form.name" show-password type="password" />
+  <xc-input v-model="form.desc" type="textarea" />
 </template>
