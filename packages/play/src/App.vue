@@ -9,8 +9,9 @@ import {
   zhCn,
   zhTw,
   XcConfigProvider,
-  XcMessage,
   XcNotification,
+  XcMessageBox,
+  XcMessage,
 } from 'xc-element'
 import { get } from 'lodash-es'
 import { computed, ref, reactive, h } from 'vue'
@@ -90,6 +91,20 @@ function openNotify2() {
     position: 'top-left',
   })
 }
+
+function openConfirm() {
+  XcMessageBox.confirm(
+    'proxy will permanently delete the file. Continue?',
+    'Warning',
+    { type: 'warning' }
+  )
+    .then((action) => {
+      XcMessage.info(`action: ${action}`)
+    })
+    .catch((action) => {
+      XcMessage.warning(`action: ${action}`)
+    })
+}
 </script>
 
 <template>
@@ -130,4 +145,5 @@ function openNotify2() {
   <xc-button @click="openNotify2" plain>Won't closes automatically</xc-button>
   <xc-input v-model="form.name" show-password type="password" />
   <xc-input v-model="form.desc" type="textarea" />
+  <xc-button @click="openConfirm" plain> Click to open the Confirm</xc-button>
 </template>

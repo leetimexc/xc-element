@@ -11,6 +11,7 @@ import {
   XcPopconfirm,
   XcMessage,
   XcNotification,
+  XcMessageBox,
   XcInput,
 } from '@xc-element/components'
 import type { Plugin } from 'vue'
@@ -31,5 +32,6 @@ export default [
   XcPopconfirm,
   XcMessage,
   XcNotification,
+  XcMessageBox,
   XcInput,
 ] as Plugin[]
