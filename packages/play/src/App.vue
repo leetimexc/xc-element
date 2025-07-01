@@ -18,6 +18,7 @@ import { get } from 'lodash-es'
 import { computed, ref, reactive, h } from 'vue'
 
 const loading = ref(false)
+const switchVal = ref(1)
 
 function openLoading1() {
   loading.value = true
@@ -176,4 +177,11 @@ function openConfirm() {
     As a directive
   </xc-button>
   <xc-button type="primary" @click="openLoading2"> As a service </xc-button>
+  <xc-switch
+    v-model="switchVal"
+    size="small"
+    :active-value="0"
+    :inactive-value="1"
+  />
+  {{ switchVal }}
 </template>
