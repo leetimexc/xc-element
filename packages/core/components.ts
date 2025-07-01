@@ -15,6 +15,8 @@ import {
   XcInput,
   XcLoading,
   XcSwitch,
+  XcSelect,
+  XcOption,
 } from '@xc-element/components'
 import type { Plugin } from 'vue'
 
@@ -38,4 +40,6 @@ export default [
   XcInput,
   XcLoading,
   XcSwitch,
+  XcSelect,
+  XcOption,
 ] as Plugin[]

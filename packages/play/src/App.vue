@@ -128,6 +128,11 @@ function openConfirm() {
       XcMessage.warning(`action: ${action}`)
     })
 }
+const options = ref([
+  { value: 'beijing', label: 'Beijing' },
+  { value: 'shanghai', label: 'Shanghai' },
+])
+const value = ref('')
 </script>
 
 <template>
@@ -184,4 +189,5 @@ function openConfirm() {
     :inactive-value="1"
   />
   {{ switchVal }}
+  <xc-select v-model="value" :options="options" clearable />
 </template>
