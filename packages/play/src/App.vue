@@ -13,6 +13,8 @@ import {
   XcMessageBox,
   XcMessage,
   XcLoading,
+  XcSelect,
+  XcOption,
 } from 'xc-element'
 import { get } from 'lodash-es'
 import { computed, ref, reactive, h } from 'vue'
@@ -131,6 +133,8 @@ function openConfirm() {
 const options = ref([
   { value: 'beijing', label: 'Beijing' },
   { value: 'shanghai', label: 'Shanghai' },
+  { value: 'shenzhen', label: 'Shenzhen', disabled: true },
+  { value: 'hangzhou', label: 'Hangzhou' },
 ])
 const value = ref('')
 </script>
@@ -189,5 +193,10 @@ const value = ref('')
     :inactive-value="1"
   />
   {{ switchVal }}
-  <xc-select v-model="value" :options="options" clearable />
+  <xc-select v-model="value" filterable clearable>
+    <xc-option value="beijing" label="Beijing" />
+    <xc-option value="shanghai" label="Shanghai" />
+    <xc-option value="shenzhen" label="Shenzhen" disabled />
+    <xc-option value="hangzhou" label="Hangzhou" />
+  </xc-select>
 </template>
