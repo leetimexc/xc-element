@@ -13,6 +13,7 @@ import {
   XcNotification,
   XcMessageBox,
   XcInput,
+  XcLoading,
 } from '@xc-element/components'
 import type { Plugin } from 'vue'
 
@@ -34,4 +35,5 @@ export default [
   XcNotification,
   XcMessageBox,
   XcInput,
+  XcLoading,
 ] as Plugin[]
