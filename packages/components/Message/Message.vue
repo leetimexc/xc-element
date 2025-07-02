@@ -50,7 +50,7 @@ function close() {
 }
 
 watch(visible, (val) => {
-  if (!val) boxHeight.value = -props.offset // 使得退出的动画更加流畅Add commentMore actions
+  if (!val) boxHeight.value = -props.offset // 使得退出的动画更加流畅
 })
 
 useEventListener(document, 'keydown', (e: Event) => {
