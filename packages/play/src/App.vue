@@ -3,6 +3,7 @@ import {
   XcButton,
   XcPopconfirm,
   type DropdownItemProps,
+  type FormInstance,
   ja,
   ko,
   en,
@@ -40,11 +41,6 @@ function openLoading2() {
     _loading.close()
   }, 2000)
 }
-
-const form = reactive({
-  name: '',
-  desc: '',
-})
 
 const language = ref('zhTw')
 const langMap = {
@@ -137,6 +133,29 @@ const options = ref([
   { value: 'hangzhou', label: 'Hangzhou' },
 ])
 const value = ref('')
+
+const formRef = ref<FormInstance>()
+const form = reactive({
+  name: '',
+  desc: '',
+})
+
+const rules = reactive({
+  name: [{ required: true, message: '请输入活动名称', trigger: 'blur' }],
+  desc: [{ required: true, message: '请填写活动形式', trigger: 'blur' }],
+})
+
+const onSubmit = () => {
+  formRef.value?.validate().then((valid) => {
+    if (valid) {
+      XcMessage.success('submit!')
+    }
+  })
+}
+
+const onReset = () => {
+  formRef.value?.resetFields()
+}
 </script>
 
 <template>
@@ -199,4 +218,16 @@ const value = ref('')
     <xc-option value="shenzhen" label="Shenzhen" disabled />
     <xc-option value="hangzhou" label="Hangzhou" />
   </xc-select>
+  <xc-form ref="formRef" :model="form" :rules="rules">
+    <xc-form-item label="Activity name" prop="name">
+      <xc-input v-model="form.name" />
+    </xc-form-item>
+    <xc-form-item label="Activity form" prop="desc">
+      <xc-input v-model="form.desc" type="textarea" />
+    </xc-form-item>
+    <xc-form-item>
+      <xc-button type="primary" @click="onSubmit">Create</xc-button>
+      <xc-button @click="onReset">Reset</xc-button>
+    </xc-form-item>
+  </xc-form>
 </template>
