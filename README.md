@@ -329,4 +329,4 @@ vim package.json
 
 <!-- https://github.com/leetimexc/xc-element -->
 
-@9shadow/ui‌
+@nine-shadow/ui‌
